@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24SIETE VENDING - Tiendas Vending 24h</title>
+    <style>
+        /* Reset y estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header y navegación */
+        header {
+            background-color: #000;
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .nav-toggle-label {
+            display: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle-label span,
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after {
+            display: block;
+            background: rgb(0, 0, 0);
+            height: 2px;
+            width: 1rem;
+            position: relative;
+        }
+
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after {
+            content: '';
+            position: absolute;
+        }
+
+        .nav-toggle-label span::before {
+            bottom: 7px;
+        }
+
+        .nav-toggle-label span::after {
+            top: 7px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 1rem;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+
+        .cta-button {
+            background-color: #FFD700;
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background-color: #FFC000;
+        }
+
+        /* Hero section */
+        .hero {
+            background-image: url('/placeholder.svg');
+            background-size: cover;
+            background-position: center;
+            color: rgb(0, 0, 0);
+            text-align: left;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(248, 246, 119, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #f7fafc;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Newsletter section */
+        .newsletter {
+            background-color: #FFD700;
+            color: black;
+            padding: 2rem 0;
+        }
+
+        .newsletter form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.25rem;
+        }
+
+        .newsletter button {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .newsletter button:hover {
+            background-color: #333;
+        }
+
+        /* Features section */
+        .features {
+            padding: 4rem 0;
+            background-color: #f7fafc;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-icon {
+            background-color: #FFD700;
+            color: black;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        /* Instagram section */
+        .instagram {
+            padding: 4rem 0;
+        }
+
+        .instagram h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .instagram-item {
+            aspect-ratio: 1;
+            background-color: #b5b5b6;
+            border-radius: 0.5rem;
+            background-image: url(image\ copy\ 2.png);
+            background-size: 300px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .instagram-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .instagram-buttons a {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+        }
+
+        .instagram-buttons a:first-child {
+            border: 1px solid #FFD700;
+            color: #000;
+        }
+
+        .instagram-buttons a:last-child {
+            background-color: #FFD700;
+            color: black;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .footer-grid {
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            background-color: #FFD700;
+            color: black;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-toggle-label {
+                padding: 20px;
+                background-color: #FFD700;
+                display: block;
+                border-radius: 100%;
+            }
+
+
+
+            nav {
+                position: relative;
+                background: #000;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .nav-toggle:checked~nav {
+                max-height: 300px;
+                /* Ajusta este valor si tu lista tiene más elementos */
+            }
+
+            .cta-button {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+            }
+
+            .newsletter form {
+                flex-direction: column;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <img src="logo.png" class="logo__img" >
+            <style>
+                .logo__img{
+
+                    margin: 0;
+                    padding: 0;
+                    min-width: 75px;
+                }
+            </style>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <nav>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Tiendas</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Tecnología</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="cta-button">Tu Tienda 24/7 VENDING</a>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1 style="text-align: center;background-color: #000; width: 100%;">TIENDAS 24SIETE VENDING</h1>
+                <h2>Tus productos favoritos las 24hs.</h2>
+                <p>Síguenos en nuestras redes sociales y no te pierdas las novedades, promociones limitadas y eventos en
+                    nuestras Tiendas 24SIETE VENDING.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white hover:text-yellow-400"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i data-lucide="youtube"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i data-lucide="linkedin"></i></a>
+                </div>
+                <style>
+                    .text-white:hover{
+                        color: #a0f1ff;
+                    }
+                </style>
+                <script src="https://unpkg.com/lucide@latest"></script>
+                <script>
+                    lucide.createIcons();
+                </script>
+            </div>
+        </section>
+
+
+
+        <section class="features">
+            <div class="container">
+                <h2>¿Porqué comprar en nuestras tiendas?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Experiencia de compra</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Variedad de productos</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Amplitud horaria</span>
+                    </div>
+                    <div class=" feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Privacidad</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Sin límite</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Anti-COVID</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="instagram">
+            <div class="container">
+                <h2>24/7 VENDING Instagram</h2>
+                <div class="instagram-grid">
+                    <div class="instagram-item"></div>
+                    <div class="instagram-item"></div>
+                    <div class="instagram-item"></div>
+                    <div class="instagram-item"></div>
+                    <div class="instagram-item"></div>
+                    <div class="instagram-item"></div>
+                </div>
+                <div class="instagram-buttons">
+                    <a href="#">Ver más</a>
+                    <a href="#">Síguenos en Instagram</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>24SIETE VENDING</h4>
+                <p>TIENDAS VENDING 24H</p>
+            </div>
+            <div class="footer-column">
+                <h4>Llámanos</h4>
+                <p>Teléfono +34 666 666 666</p>
+
+            </div>
+            <div class="footer-column">
+                <h4>Información</h4>
+                <ul>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Aviso legal</a></li>
+                    <li><a href="#">Política de Cookies</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                    <li><a href="#">Expansión</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        © 2024 24SIETE VENDING :: Tiendas Vending 24h
+    </div>
+</body>
+
+</html>
